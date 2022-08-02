@@ -8,5 +8,5 @@ terraform {
 }
 
 provider "digitalocean" {
-  # Configuration options
+  token = file("${path.module}/do_token")
 }
