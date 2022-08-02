@@ -8,5 +8,5 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = file("${path.module}/do_token")
+  token = chomp(file("${path.module}/do_token"))
 }
