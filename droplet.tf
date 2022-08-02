@@ -9,7 +9,6 @@ resource "digitalocean_droplet" "vpn" {
   size   = "s-1vcpu-512mb-10gb"
   ssh_keys = [
     data.digitalocean_ssh_key.mb.id,
-    31325656
   ]
   tags = ["vpn", "tf"]
 }
