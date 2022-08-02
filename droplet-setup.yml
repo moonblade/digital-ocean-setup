@@ -1,0 +1,10 @@
+- become: yes
+  hosts: all
+  name: install-git
+  tasks:
+    - name: install git
+      apt:
+        name: git
+        update_cache: yes
+        state: latest
+

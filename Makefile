@@ -8,8 +8,9 @@ plan:
 	terraform plan 
 
 ssh:
-	# ssh vpn
-	ssh root@$(shell terraform output --raw droplet_ip) 
+	ssh-keygen -R vpn
+	ssh vpn
+	# ssh root@$(shell terraform output --raw droplet_ip) 
 
 ip:
 	@terraform output --raw droplet_ip
