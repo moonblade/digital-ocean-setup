@@ -20,8 +20,7 @@ resource "digitalocean_droplet" "vpn" {
   tags = ["vpn", "tf"]
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update", 
-      "echo Done!"
+      "echo setup complete!"
     ]
     connection {
       host        = self.ipv4_address
@@ -30,9 +29,9 @@ resource "digitalocean_droplet" "vpn" {
       private_key = file(var.pvt_key)
     }
   }
-  # provisioner "local-exec" {
-    # command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' --private-key ${chomp(file(var.pvt_key))} -e 'pub_key=${chomp(file(var.pub_key))}' droplet-setup.yml"
-  # }
+  provisioner "local-exec" {
+		command = "	sed \"s/IP_ADDRESS/${self.ipv4_address}/g\" ansible/hosts.tpl > ansible/hosts; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i ansible/hosts --private-key ${var.pvt_key} -e 'pub_key=${var.pub_key}' ansible/*.yml"
+  }
 }
 
 output "droplet_ip" {

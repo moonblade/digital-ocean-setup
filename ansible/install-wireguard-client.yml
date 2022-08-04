@@ -1,0 +1,7 @@
+- name: "Check if wireguard {{ item }} client is installed"
+  stat:
+    path: "/root/wg0-client-{{ item }}.conf"
+  register: stat_result
+- name: "install wireguard {{ item }} client"
+  ansible.builtin.command: "/root/wireguard-install.sh {{ item }}"
+  when: not stat_result.stat.exists

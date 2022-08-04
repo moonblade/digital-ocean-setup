@@ -18,3 +18,9 @@ ip:
 clean:
 	terraform destroy
 
+.PHONY: ansible
+ansible:
+	sed "s/IP_ADDRESS/$(shell terraform output --raw droplet_ip)/g" ansible/hosts.tpl > ansible/hosts
+	ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts -u root ansible/setup.yml
+
+

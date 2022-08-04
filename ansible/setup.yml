@@ -1,0 +1,24 @@
+- become: yes
+  hosts: all
+  name: install-wireguard
+  tasks:
+    - name: Copy installer
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/scripts/wireguard-install.sh"
+        dest: /root/wireguard-install.sh
+        owner: root
+        group: root
+        mode: '0744'
+    - name: Check if wireguard is installed
+      stat:
+        path: /etc/wireguard/params 
+      register: stat_result
+    - name: install wireguard
+      ansible.builtin.command: /root/wireguard-install.sh
+      when: not stat_result.stat.exists
+    - include_tasks: install-wireguard-client.yml
+      with_items:
+      - "mac"
+      - "iphone"
+      - "android"
+
