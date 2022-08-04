@@ -13,7 +13,7 @@ Sets up digital ocean vm (on lowest configuration), and installs wireguard on it
 
 ## Steps
 
-1. Add [digital ocean api token](https://docs.digitalocean.com/reference/api/create-personal-access-token/) in do_token
+1. Add [digital ocean api token](https://docs.digitalocean.com/reference/api/create-personal-access-token/) in do_token; alternatively run `git-crypt unlock` to get the existing token
 2. change variable `ssh_key_name` in droplet.tf
 3. Initialize providers with `make init`
 4. Create droplet and setup wireguaard with `make apply`
