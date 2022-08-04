@@ -5,3 +5,8 @@
 - name: "install wireguard {{ item }} client"
   ansible.builtin.command: "/root/wireguard-install.sh {{ item }}"
   when: not stat_result.stat.exists
+- name: "Download the wireguard config for {{ item }}"
+  ansible.builtin.fetch:
+    src: "/root/wg0-client-{{ item }}.conf"
+    dest: "{{ playbook_dir }}/../out/"
+    flat: yes
