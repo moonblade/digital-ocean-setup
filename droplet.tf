@@ -1,5 +1,9 @@
-data "digitalocean_ssh_key" "mb" {
-  name = "mb"
+data "digitalocean_ssh_key" "ssh_key" {
+  name = var.ssh_key_name
+}
+
+variable ssh_key_name {
+  default = "mb"
 }
 
 variable "pvt_key" {
@@ -15,7 +19,7 @@ resource "digitalocean_droplet" "vpn" {
   region = "ams3"
   size   = "s-1vcpu-512mb-10gb"
   ssh_keys = [
-    data.digitalocean_ssh_key.mb.id,
+    data.digitalocean_ssh_key.ssh_key.id,
   ]
   tags = ["vpn", "tf"]
   provisioner "remote-exec" {
