@@ -1,2 +1,4 @@
 ansible/hosts
 out
+*.tfstate
+*.tfstate.backup
