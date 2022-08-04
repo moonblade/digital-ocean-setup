@@ -30,7 +30,7 @@ resource "digitalocean_droplet" "vpn" {
     }
   }
   provisioner "local-exec" {
-		command = "	sed \"s/IP_ADDRESS/${self.ipv4_address}/g\" ansible/hosts.tpl > ansible/hosts; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i ansible/hosts --private-key ${var.pvt_key} -e 'pub_key=${var.pub_key}' ansible/*.yml"
+		command = "	sed \"s/IP_ADDRESS/${self.ipv4_address}/g\" ansible/hosts.tpl > ansible/hosts; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i ansible/hosts --private-key ${var.pvt_key} -e 'pub_key=${var.pub_key}' ansible/setup.yml"
   }
 }
 
