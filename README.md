@@ -2,6 +2,8 @@
 
 Sets up digital ocean vm (on lowest configuration), and installs wireguard on it. It also installs three clients on it called mac, iphone and android and downloads the config files to out folder.
 
+Created this mostly to have some hands-on with ansible playbooks and terraform as well
+
 
 ## Pre requisites
 
@@ -19,6 +21,7 @@ Sets up digital ocean vm (on lowest configuration), and installs wireguard on it
 3. Initialize providers with `make init`
 4. Create droplet and setup wireguaard with `make apply`
 5. `make qr` to get qr code of the downloaded configurations
+
 
 
 
